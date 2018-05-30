@@ -18,7 +18,6 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
 import com.intellij.psi.PsiWhiteSpace;
 import idea.plugin.psiviewer.PsiViewerConstants;
-import idea.plugin.psiviewer.controller.application.Configuration;
 import idea.plugin.psiviewer.controller.application.PsiViewerApplicationSettings;
 import idea.plugin.psiviewer.controller.project.PsiViewerProjectComponent;
 import idea.plugin.psiviewer.util.PluginPsiUtil;
@@ -40,28 +39,16 @@ class EditorPsiElementHighlighter {
     }
 
     void highlightElement(final PsiElement psiElement) {
-        ApplicationManager.getApplication().runReadAction(new Runnable() {
-            public void run() {
-                apply(psiElement);
-            }
-        });
+        ApplicationManager.getApplication().runReadAction(() -> apply(psiElement));
 
         if (psiElement != null && psiElement.getReference() != null) {
-            ApplicationManager.getApplication().runReadAction(new Runnable() {
-                public void run() {
-                    applyReference(psiElement.getReference());
-                }
-            });
+            ApplicationManager.getApplication().runReadAction(() -> applyReference(psiElement.getReference()));
         }
     }
 
 
     void removeHighlight() {
-        ApplicationManager.getApplication().runReadAction(new Runnable() {
-            public void run() {
-                remove();
-            }
-        });
+        ApplicationManager.getApplication().runReadAction(this::remove);
     }
 
     private void apply(PsiElement element) {

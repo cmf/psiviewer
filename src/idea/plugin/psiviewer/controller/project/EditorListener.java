@@ -88,12 +88,7 @@ public class EditorListener implements FileEditorManagerListener, CaretListener 
     private void updateTreeFromPsiTreeChange(final PsiTreeChangeEvent event) {
         if (isElementChangedUnderViewerRoot(event)) {
             LOG.debug("PSI Change, starting update timer");
-            ApplicationManager.getApplication().runWriteAction(new Runnable() {
-                @Override
-                public void run() {
-                    _viewer.refreshRootElement();
-                }
-            });
+            ApplicationManager.getApplication().runWriteAction(_viewer::refreshRootElement);
         }
     }
 

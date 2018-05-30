@@ -25,8 +25,6 @@ package idea.plugin.psiviewer.view.configuration;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.colorchooser.ColorSelectionModel;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 class CompoundSlider extends JPanel
@@ -43,24 +41,16 @@ class CompoundSlider extends JPanel
         _slider.setPaintLabels(true);
         _slider.setPaintTicks(true);
 
-        _spinner.addChangeListener(new ChangeListener()
-        {
-            public void stateChanged(ChangeEvent e)
-            {
-                int value = ((Number) (((JSpinner) e.getSource()).getValue())).intValue();
-                _slider.setValue(value);
-                updateColor(value);
-            }
+        _spinner.addChangeListener(e -> {
+                    int value = ((Number) (((JSpinner) e.getSource()).getValue())).intValue();
+                    _slider.setValue(value);
+                    updateColor(value);
         }
         );
-        _slider.addChangeListener(new ChangeListener()
-        {
-            public void stateChanged(ChangeEvent e)
-            {
-                int value = ((JSlider) e.getSource()).getValue();
-                _spinner.setValue(new Integer(value));
-                updateColor(value);
-            }
+        _slider.addChangeListener(e -> {
+                    int value = ((JSlider) e.getSource()).getValue();
+                    _spinner.setValue(new Integer(value));
+                    updateColor(value);
         }
         );
 
