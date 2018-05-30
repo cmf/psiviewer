@@ -20,9 +20,9 @@ package com.sylvanaar.idea.errorreporting;
 import com.intellij.openapi.application.PathManager;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.ui.DialogWrapper;
-import com.intellij.openapi.util.DefaultJDOMExternalizer;
 import com.intellij.openapi.util.InvalidDataException;
 import com.intellij.openapi.util.JDOMUtil;
+import com.intellij.util.xmlb.XmlSerializer;
 import org.jdom.Document;
 import org.jdom.Element;
 
@@ -89,7 +89,7 @@ public class PluginErrorSubmitDialog extends DialogWrapper {
                     throw new InvalidDataException("Expected element >component< not found");
                 }
 
-                DefaultJDOMExternalizer.readExternal(this, componentElement);
+                XmlSerializer.deserializeInto(this, componentElement);
                 userTextField.setText(USERNAME);
             } catch (Exception e) {
                 LOGGER.info("Unable to read configuration file", e);
@@ -104,7 +104,7 @@ public class PluginErrorSubmitDialog extends DialogWrapper {
             applicationElement.addContent(componentElement);
 
             USERNAME = userTextField.getText();
-            DefaultJDOMExternalizer.writeExternal(this, componentElement);
+            XmlSerializer.serializeInto(this, componentElement);
 
             Document document = new Document(applicationElement);
             JDOMUtil.writeDocument(document, getOptionsFilePath(), "\r\n");

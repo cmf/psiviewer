@@ -3,7 +3,6 @@
  */
 package idea.plugin.psiviewer.view;
 
-import junit.framework.Assert;
 import junit.framework.TestCase;
 
 import javax.swing.*;
@@ -22,8 +21,8 @@ public class PropertySheetPanelTest extends TestCase
     {
         propertySheetPanel.setTarget(new MyBean());
         TableModel model = propertySheetPanel.getTable().getModel();
-        Assert.assertEquals("# cols", 2, model.getColumnCount());
-        Assert.assertEquals("# rows", 3, model.getRowCount());
+        assertEquals("# cols", 2, model.getColumnCount());
+        assertEquals("# rows", 3, model.getRowCount());
         assertCellEquals("class", model, 0, 0);
         assertCellEquals(MyBean.class.toString(), model, 0, 1);
         assertCellEquals("object", model, 1, 0);
@@ -34,7 +33,7 @@ public class PropertySheetPanelTest extends TestCase
 
     private static void assertCellEquals(String expectedValue, TableModel model, int row, int col)
     {
-        Assert.assertEquals("table[" + row + "," + col + "]", expectedValue, model.getValueAt(row, col));
+        assertEquals("table[" + row + "," + col + "]", expectedValue, model.getValueAt(row, col));
     }
 
     static class MyBean

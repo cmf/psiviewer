@@ -54,7 +54,7 @@ import static com.intellij.openapi.diagnostic.SubmittedReportInfo.SubmissionStat
 public class YouTrackBugReporter extends ErrorReportSubmitter {
     private static final Logger log = Logger.getInstance(YouTrackBugReporter.class.getName());
     @NonNls
-    private static final String SERVER_URL = "http://sylvanaar.myjetbrains.com/youtrack/";
+    private static final String SERVER_URL = "https://sylvanaar.myjetbrains.com/youtrack/";
     private static final String SERVER_REST_URL = SERVER_URL + "rest/";
     private static final String SERVER_ISSUE_URL = SERVER_REST_URL + "issue";
     private static final String LOGIN_URL = SERVER_REST_URL + "user/login";

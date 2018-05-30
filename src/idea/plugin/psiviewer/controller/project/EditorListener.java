@@ -24,7 +24,6 @@ package idea.plugin.psiviewer.controller.project;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Editor;
-import com.intellij.openapi.editor.event.CaretAdapter;
 import com.intellij.openapi.editor.event.CaretEvent;
 import com.intellij.openapi.editor.event.CaretListener;
 import com.intellij.openapi.fileEditor.FileEditorManager;
@@ -45,7 +44,7 @@ import org.jetbrains.annotations.NotNull;
  * @author <a href="mailto:andrew_armstrong@bigpond.com">Andrew Armstrong</a>
  * @version $Revision: 1.1 $
  */
-public class EditorListener extends CaretAdapter implements FileEditorManagerListener, CaretListener {
+public class EditorListener implements FileEditorManagerListener, CaretListener {
 
 
     private static final Logger LOG = Logger.getInstance("idea.plugin.psiviewer.controller.project.EditorListener");
