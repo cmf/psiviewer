@@ -25,16 +25,14 @@ sourceSets {
 
 apply plugin: 'org.jetbrains.intellij'
 intellij {
-    version "${platformVersion}${platformBranch}${platformBuild}"
-    downloadSources Boolean.valueOf(downloadIdeaSource)
-    sandboxDirectory project.rootDir.canonicalPath + "/.sandbox"
+    pluginName.set("${name}")
+    version.set("${platformVersion}${platformBranch}${platformBuild}")
     updateSinceUntilBuild = true
-
 }
 
 patchPluginXml{
-    changeNotes(file(psiViewerChangesFile).text)
-    pluginDescription(psiViewerDescription)
+    changeNotes.set(provider {file(psiViewerChangesFile).text})
+    pluginDescription.set(psiViewerDescription)
 }
 
 test {
