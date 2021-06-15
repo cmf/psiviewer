@@ -1,6 +1,11 @@
 plugins {
     id "org.jetbrains.intellij" version "$intellijGradlePluginVersion"
 }
+
+repositories {
+    mavenCentral()
+}
+
 version = "${pluginVersion}${platformBranch}${pluginBuild}"
 
 apply plugin: 'java'
