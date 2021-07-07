@@ -87,7 +87,7 @@ public class PropertySheetPanel extends JPanel {
     {
         myTable = new JTable(tableData, columnTitle) {
             public boolean isCellEditable(int row, int column) {
-                return false;
+                return true;
             }
 
             public JToolTip createToolTip() {
@@ -124,7 +124,10 @@ public class PropertySheetPanel extends JPanel {
         }
         ;
         myTable.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
-        myTable.getSelectionModel().setSelectionMode(0);
+        myTable.getSelectionModel().setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+        myTable.getColumnModel().getColumn(1).setCellEditor(
+                new PropertyCellEditor());
 
         packColumn(myTable, 0, 2);
         packColumn(myTable, 1, 2);
